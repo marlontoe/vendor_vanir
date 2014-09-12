@@ -295,6 +295,10 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/common/etc/init.d/0000kernelassimilator:system/etc/init.d/0000kernelassimilator \
     vendor/vanir/proprietary/common/etc/kernelassimilator.d/00bootclasspath:system/etc/kernelassimilator.d/00bootclasspath
 
+# Terminal Emulator
+PRODUCT_COPY_FILES +=  \
+    vendor/carbon/proprietary/Term.apk:system/app/Term.apk \
+    vendor/carbon/proprietary/lib/armeabi/libjackpal-androidterm4.so:system/lib/libjackpal-androidterm4.so
 
 -include vendor/cyngn/product.mk
 
