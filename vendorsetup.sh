@@ -62,6 +62,7 @@ n5110
 n5120
 n7100
 nicki
+nozomi
 p3110
 p880
 peregrine
