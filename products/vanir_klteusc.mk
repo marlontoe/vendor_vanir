@@ -2,11 +2,11 @@
 # you might want to wait to try this unless you have a giant pair of low-hanging huevos
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-klte \
+    ro.goo.rom=vanir-klteusc \
     ro.com.google.clientidbase=android-samsung \
     ro.com.google.clientidbase.gmm=android-samsung
 
-$(call inherit-product, device/samsung/klte/full_klte.mk)
+$(call inherit-product, device/samsung/klteusc/full_klteusc.mk)
 
 # Boot Animation
 PRODUCT_COPY_FILES += \
@@ -25,5 +25,4 @@ PRODUCT_COPY_FILES += \
     vendor/vanir/proprietary/jf/bin/nuclearwinter:system/bin/nuclearwinter \
     vendor/vanir/proprietary/jf/bin/nuclearwinterinternal:system/bin/nuclearwinterinternal
 
-PRODUCT_DEVICE := klte
-PRODUCT_NAME := vanir_klte
+PRODUCT_NAME := vanir_klteusc

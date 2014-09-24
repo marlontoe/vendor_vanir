@@ -65,6 +65,7 @@ nicki
 nozomi
 p3110
 p880
+peregrine
 pollux
 pollux_windy
 sirius
