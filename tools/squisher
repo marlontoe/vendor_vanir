@@ -13,14 +13,8 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
     exit 1
 fi
 
-if [ "$TARGET_BUILD_TYPE" = "debug" ]; then
-    OTAPACKAGE=$OUT/${TARGET_PRODUCT}_debug-ota-$TARGET_BUILD_VARIANT.$USER.zip
-elif [ "$TARGET_BUILD_VARIANT" = "userdebug" ]; then
-    OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-eng.$USER.zip
-else
-#    OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-$TARGET_BUILD_VARIANT.$USER.zip
-    OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-eng.$USER.zip
-fi
+OTAPACKAGE=$OTA_PACKAGE_PATH
+
 if [ ! -f "$OTAPACKAGE" ]; then
     echo -e $CL_RED"$OTAPACKAGE doesn't exist!"$CL_RST;
     exit 1
@@ -119,35 +113,10 @@ if [ "$WANT_SQUASHFS" -eq 1 ]; then
     $SED -i -e's,system/xbin/su,system/bin/su,g' -e'/xbin/d' $updater
 fi
 
-# No need for recovery
-rm -rf $REPACK/ota/recovery
-
 # Determine what to name the new signed package
 MODVERSION=`sed -n -e'/ro\.modversion/s/^.*=//p' $REPACK/ota/system/build.prop`
 OUTVERSION="$TARGET_PRODUCT"_"$MODVERSION"
 OUTFILE=$OUT/$OUTVERSION.zip
-
-# add qcom optimized dalvikVM
-case $1 in msm8610|msm8x26|msm8226|msm8x74|msm8974|msm8960|msm8660|msm7627a|msm7630_surf|apq8084|mpq8092)
-  echo -e $CL_GRN"Proprietary transplant:" $CL_RST" MOTO X QCOM BLOBS!"
-  echo -e $CL_RED"\
- ____ ____ ____ _________ ____ ____ ____ 
-||"$CL_YLW"W"$CL_RED" |||"$CL_YLW"T"$CL_RED" |||"$CL_YLW"F"$CL_RED" |||       |||"$CL_YLW"B"$CL_RED" |||"$CL_YLW"B"$CL_RED" |||"$CL_YLW"Q"$CL_RED" ||
-||__|||__|||__|||_______|||__|||__|||__||
-|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|
-"$CL_RST
-  for blob in \
-    bin/dalvikvm \
-    bin/dexopt \
-    lib/libcutils.so \
-    lib/libdvm.so \
-    lib/libqc-opt.so
-  do
-    cp -f "$ANDROID_BUILD_TOP/vendor/vanir/proprietary/qcom/$blob" "$REPACK/ota/system/$blob"
-  done
-  grep -c dalvik.vm.dexopt-data-only $REPACK/ota/system/build.prop && sed -i 's/dalvik\.vm\.dexopt-data-only=0/dalvik\.vm\.dexopt-data-only=1/g' $REPACK/ota/system/build.prop || echo dalvik.vm.dexopt-data-only=1 >> $REPACK/ota/system/build.prop
-  ;;
-esac
 
 # Pack it up and sign
 printf "Zipping package..."
@@ -170,15 +139,15 @@ echo -e ""
 echo -e ""
 echo -e $CL_GRN"================  "$CL_RST OTA package information $CL_GRN"  ================"$CL_RST
 echo -e ""
-echo -e $CL_BLU"Product name:"$CL_RST $TARGET_PRODUCT-ota-eng.$USER.zip
+echo -e $CL_BLU"Product name:"$CL_RST $OTAPACKAGE
 
 img=`basename $OUTFILE`
 cd `dirname $OUTFILE`
-STRING="$TARGET_PRODUCT-ota-eng.$USER.zip"
+STRING=$OTA_PACKAGE_PATH
 OTASIZE=`ls -lah $STRING | awk '{ print $5}' `
 echo -e $CL_BLU"Package Size: "$CL_YLW "$OTASIZE" $CL_RST
 echo -e $CL_BLU"Target Location: " $CL_RST
-echo -e $CL_YLW"$OUT/$TARGET_PRODUCT-ota-eng.$USER.zip" $CL_RST
+echo -e $CL_YLW"$OTA_PACKAGE_PATH" $CL_RST
 echo ""
 
 $MD5 $img >$img.md5
