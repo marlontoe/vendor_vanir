@@ -19,6 +19,7 @@ DHO_VENDOR := vanir
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
 
+
 # Vanir configuration
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
 
@@ -36,3 +37,6 @@ PRODUCT_BRAND := Sony
 PRODUCT_MODEL := Xperia S
 PRODUCT_MANUFACTURER := Sony
 PRODUCT_CHARACTERISTICS := phone
+
+# Enable Torch
+PRODUCT_PACKAGES += Torch
