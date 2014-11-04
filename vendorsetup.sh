@@ -11,6 +11,7 @@ d800
 d801
 d802
 d803
+d851
 dlx
 e980
 evita
@@ -43,11 +44,10 @@ kltedv
 kltespr
 kltevzw
 ls980
+ls990
 m4
-m7att
 m7spr
-m7tmo
-m7ul
+m7
 m7vzw
 m8
 maguro
@@ -83,6 +83,7 @@ tsubasa
 v500
 ville
 vs980
+vs985
 wx_na_wf
 yuga
 EOF
