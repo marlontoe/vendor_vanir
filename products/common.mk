@@ -232,7 +232,9 @@ PRODUCT_PACKAGES += \
     procmem \
     procrank \
     sqlite3 \
-    strace
+    strace \
+    zip \
+    unrar
 
 
 # Stagefright FFMPEG plugin
