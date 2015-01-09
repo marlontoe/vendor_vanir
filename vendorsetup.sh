@@ -65,6 +65,7 @@ n5110
 n5120
 n7100
 nicki
+nozomi
 p880
 pollux
 pollux_windy
