@@ -20,6 +20,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true \
     ro.goo.rom=vanir-nozomi
 
+# INherit Vanir common stuff
+$(call inherit-product, vendor/vanir/products/common.mk)
 
 # Vanir configuration
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
