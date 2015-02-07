@@ -13,6 +13,7 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
     exit 1
 fi
 
+OTA_PACKAGE_PATH=/media/BUILD/OUT/vanir/target/product/nozomi/vanir_nozomi-ota-eng.mad.zip
 OTAPACKAGE=$OTA_PACKAGE_PATH
 
 if [ ! -f "$OTAPACKAGE" ]; then
@@ -61,14 +62,15 @@ MODVERSION=`sed -n -e'/ro\.modversion/s/^.*=//p' $OUT/system/build.prop`
 OUTVERSION="$TARGET_PRODUCT"_"$MODVERSION"
 OUTFILE=$OUT/$OUTVERSION.zip
 
-# Pack it up and sign
+# Pack it up and sig
+CUSTOM_FRAME_OUT_PATH=/media/BUILD/OUT/vanir/host/linux-x86/framework
 printf "Zipping package..."
 ( cd $REPACK/ota; zip $QUIET -r $REPACK/update.zip . )
 echo
 printf "Signing package..."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
 java -Xmx2048m \
-    -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar \
+    -jar $CUSTOM_FRAME_OUT_PATH/signapk.jar \
     -w $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 \
     $REPACK/update.zip $OUTFILE
 echo
