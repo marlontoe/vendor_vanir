@@ -33,6 +33,9 @@ PRODUCT_COPY_FILES += \
 # Inherit device configuration
 $(call inherit-product, device/sony/nozomi/full_nozomi.mk)
 
+# Get the long list of APNs
+PRODUCT_COPY_FILES += device/sony/nozomi/prebuilt/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := nozomi
 PRODUCT_NAME := vanir_nozomi
