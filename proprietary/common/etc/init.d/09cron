@@ -30,7 +30,9 @@ mount -o remount,ro rootfs /
 # set timezone (if you're not between -0500 and -0800 you get PST)
 # todo - support other timezones
 timezone=`date +%z`
-if busybox [ $timezone = "-0800" ]; then
+if busybox [ $timezone = "+0100" ]; then
+  TZ=MEZ-1MESZ
+elif busybox [ $timezone = "-0800" ]; then
   TZ=PST8PDT
 elif busybox [ $timezone = "-0700" ]; then
   TZ=MST7MDT
