@@ -2,15 +2,13 @@
 DHO_VENDOR := vanir
 
 # Run these first or they will not stick
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.rom=vanir-FLO
+PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-FLO
 
 # Tablet Overlays no radios
-    PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
+PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/tab_no_radio
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1280x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1280x1920.zip:system/media/bootanimation.zip
 
 # Inherit AOSP device configuration for grouper
 $(call inherit-product, device/asus/flo/full_flo.mk)
@@ -25,4 +23,4 @@ PRODUCT_DEVICE := flo
 PRODUCT_MODEL := Nexus 7
 PRODUCT_MANUFACTURER := asus
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=razor BUILD_FINGERPRINT=google/razor/flo:6.0.1/MOB30M/2862625:user/release-keys PRIVATE_BUILD_DESC="razor-user 6.0.1 MOB30M 2862625 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=razor BUILD_FINGERPRINT=google/razor/flo:6.0.1/MOB30P/2960889:user/release-keys PRIVATE_BUILD_DESC="razor-user 6.0.1 MOB30P 2960889 release-keys"

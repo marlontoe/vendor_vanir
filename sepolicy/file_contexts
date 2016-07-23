@@ -54,3 +54,9 @@
 # fsck
 /system/bin/fsck\.ntfs                          u:object_r:fsck_exec:s0
 /system/bin/fsck\.exfat                         u:object_r:fsck_exec:s0
+
+# bash
+/system/xbin/bash                               u:object_r:shell_exec:s0
+
+# BTSync
+/data/data/com.bittorrent.sync*                 u:object_r:btsync_file:s0

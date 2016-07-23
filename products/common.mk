@@ -1,5 +1,7 @@
 DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/common
 
+PRODUCT_SIZE := full
+
 #optional theme files
 DEVICE_PACKAGE_OVERLAYS += vendor/vanir/overlay/theme
 
@@ -10,6 +12,10 @@ $(call inherit-product, vendor/vanir/config/cmsdk_common.mk)
 
 # Add some tones (if this grows to more than like... 5 ringtones and 5 notifications, old ones will be dropped)
 $(call inherit-product, vendor/vanir/proprietary/ringtones/VanirRingtones.mk)
+
+# Backup Services whitelist
+PRODUCT_COPY_FILES += \
+    vendor/vanir/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Include librsjni explicitly to workaround GMS issue
 PRODUCT_PACKAGES += \
@@ -31,7 +37,8 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     LiveLockScreenService \
     WeatherProvider \
-		DataUsageProvider
+    DataUsageProvider \
+    WallpaperPicker
 
 # Weather
 PRODUCT_PACKAGES += \
@@ -246,11 +253,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     utility_mkbootimg \
     utility_unpackbootimg
-
-# Webview is fucked, so add it here
-PRODUCT_PACKAGES += \
-    webview \
-    libwebviewchromium
 
 -include vendor/cyngn/product.mk
 

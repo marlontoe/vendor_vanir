@@ -1,6 +1,5 @@
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
 # Inherit common phone stuff
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
@@ -18,4 +17,4 @@ PRODUCT_MODEL := Nexus 5X
 TARGET_MANUFACTURER := LGE
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=bullhead BUILD_FINGERPRINT=google/bullhead/bullhead:6.0.1/MTC19V/2862947:user/release-keys PRIVATE_BUILD_DESC="bullhead-user 6.0.1 MTC19V 2862947 release-keys" BUILD_ID=MTC19V
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=bullhead BUILD_FINGERPRINT=google/bullhead/bullhead:6.0.1/MTC19Z/2996059:user/release-keys PRIVATE_BUILD_DESC="bullhead-user 6.0.1 MTC19Z 2996059 release-keys" BUILD_ID=MTC19Z
