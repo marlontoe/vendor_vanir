@@ -154,9 +154,13 @@ endif
 # Required CM packages
 PRODUCT_PACKAGES += \
     Camera \
+    CMAudioService \
     Development \
     su \
-    BluetoothExt
+    BluetoothExt \
+   ThemeManagerService \
+    HexoLibre \
+    WeatherManagerService
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
@@ -206,6 +210,14 @@ PRODUCT_PACKAGES += \
     strace \
     curl \
     pigz
+
+ifneq ($(WITH_CM_CHARGER),false)
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    cm_charger_res_images \
+    font_log.png \
+    libhealthd.cm
+endif
 
 WITH_EXFAT ?= true
 ifeq ($(WITH_EXFAT),true)
