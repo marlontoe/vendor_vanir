@@ -22,6 +22,6 @@
 
     <!-- it's a V. -->
     <path
-        android:fillColor="@color/dexopt_logo"
+        android:fillColor="#8b0000"
         android:pathData="M27,64L37,64L64,0L49,0L32,40L15,0L0,0Z" />
 </vector>
