@@ -1,5 +1,10 @@
 #!/system/bin/sh
-
+me=`whoami`
+if [ ! "$me" = "root" ] && ! echo $me | grep -q "uid 0"; then
+  echo "$0 is self-invoking with su. You be asked for approval."
+  su -c "$0 $*"
+  exit $?
+fi
 if [ -d /sdcard/TWRP ] || [ ${FORCE_CWM_FLASH} ]; then
   echo "Running in TWRP mode. If you are using CWM, then rename /sdcard/TWRP or set FORCE_CWM_FLASH in your environment"
   ZIP_LIST=
