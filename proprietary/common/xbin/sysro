@@ -1,3 +1,8 @@
 #!/system/bin/sh
-
+me=`whoami`
+if [ ! "$me" = "root" ] && ! echo $me | grep -q "uid 0"; then
+  echo "$0 is self-invoking with su. You be asked for approval."
+  su -c $0 $*
+  exit $?
+fi
 mount -o remount,ro /system
