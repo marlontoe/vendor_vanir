@@ -6,12 +6,17 @@ PRODUCT_PROPERTY_OVERRIDES += ro.goo.rom=vanir-onyx
 # Boot Animation
 PRODUCT_COPY_FILES += vendor/vanir/proprietary/boot_animations/1080x1920.zip:system/media/bootanimation.zip
 
-# Inherit device configuration
-$(call inherit-product, device/oneplus/onyx/device.mk)
-$(call inherit-product-if-exists, vendor/oneplus/onyx/onyx-vendor.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit common onyx files.
+# Inherit from onyx device
+$(call inherit-product, device/oneplus/onyx/device.mk)
+
+# Inherit common vanir files.
 $(call inherit-product, vendor/vanir/products/common_phones.mk)
+
+# Call the proprietary setup
+$(call inherit-product-if-exists, vendor/oneplus/onyx/onyx-vendor.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := vanir_onyx
