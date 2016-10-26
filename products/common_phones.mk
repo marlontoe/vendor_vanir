@@ -19,6 +19,3 @@ PRODUCT_PACKAGES += \
 include frameworks/base/data/sounds/AudioPackage7.mk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/vanir/overlay/dictionaries
-
-# Ring Ring
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
